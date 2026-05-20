@@ -6,15 +6,10 @@
     <title>Nisar & Sons – Premium Confectionery Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Firebase SDKs (CDN - compat versions for simple HTML integration) -->
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics-compat.js">
-    </script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
 
     <style>
         :root {
@@ -26,7 +21,6 @@
             --cream: #f5f0e8;
             --white: #ffffff;
             --red: #c0392b;
-            --accent: #8b5e1e;
             --green: #27ae60;
         }
 
@@ -43,7 +37,6 @@
             overflow-x: hidden;
         }
 
-        /* ─── PAGES ─── */
         .page {
             display: none;
             min-height: 100vh;
@@ -52,7 +45,7 @@
             display: block;
         }
 
-        /* ─── TOAST ─── */
+        /* Toast */
         .toast-container {
             position: fixed;
             top: 80px;
@@ -66,16 +59,13 @@
             background: var(--dark3);
             border: 1px solid var(--gold);
             color: var(--cream);
-            padding: 14px 22px;
+            padding: 12px 20px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            animation: slideIn 0.3s ease, fadeOut 0.4s 2.6s ease forwards;
-            max-width: 380px;
+            animation: slideIn 0.25s ease, fadeOut 0.3s 2.2s ease forwards;
+            max-width: 340px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         .toast.success {
             border-color: var(--green);
@@ -83,15 +73,11 @@
         .toast.error {
             border-color: var(--red);
         }
-        .toast .toast-icon {
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateX(60px);
+                transform: translateX(50px);
             }
             to {
                 opacity: 1;
@@ -99,44 +85,13 @@
             }
         }
         @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
             to {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
         }
 
-        /* ─── LOADING OVERLAY ─── */
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9998;
-            background: rgba(13, 13, 13, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: all;
-        }
-        .loading-overlay.hidden {
-            display: none;
-        }
-        .loading-spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid rgba(201, 168, 76, 0.2);
-            border-top-color: var(--gold);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ─── NAV ─── */
+        /* NAV */
         nav {
             position: fixed;
             top: 0;
@@ -178,8 +133,6 @@
             font-weight: 500;
             cursor: pointer;
             transition: color 0.3s;
-            border: none;
-            background: none;
         }
         .nav-links a:hover {
             color: var(--gold);
@@ -192,12 +145,13 @@
             font-weight: 600;
             font-size: 0.8rem;
             transition: background 0.3s;
+            text-decoration: none;
         }
         .nav-links .btn-admin:hover {
             background: var(--gold-light);
         }
 
-        /* ─── HERO ─── */
+        /* HERO */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 50%, #1c1200 100%);
@@ -272,7 +226,6 @@
         .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
         .btn-outline {
             background: transparent;
@@ -291,12 +244,8 @@
             border-color: var(--gold);
             color: var(--gold);
         }
-        .btn-outline:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
 
-        /* ─── SECTION ─── */
+        /* SECTIONS */
         section {
             padding: 100px 40px;
         }
@@ -322,7 +271,6 @@
             margin-bottom: 60px;
         }
 
-        /* ─── PRODUCTS ─── */
         #products-section {
             background: var(--dark2);
         }
@@ -338,7 +286,6 @@
             border-radius: 4px;
             overflow: hidden;
             transition: all 0.3s;
-            cursor: pointer;
         }
         .product-card:hover {
             border-color: var(--gold);
@@ -384,6 +331,7 @@
             transform: translateX(-50%);
             display: flex;
             gap: 5px;
+            z-index: 2;
         }
         .img-dot {
             width: 6px;
@@ -433,7 +381,6 @@
             margin-bottom: 16px;
         }
 
-        /* ─── BRANDS ─── */
         .brands-section {
             background: var(--dark);
             text-align: center;
@@ -454,14 +401,12 @@
             font-weight: 600;
             letter-spacing: 1px;
             transition: all 0.3s;
-            cursor: default;
         }
         .brand-chip:hover {
             border-color: var(--gold);
             color: var(--gold);
         }
 
-        /* ─── CONTACT ─── */
         .contact-section {
             background: var(--dark2);
         }
@@ -528,7 +473,6 @@
             resize: none;
         }
 
-        /* ─── FOOTER ─── */
         footer {
             background: var(--dark);
             border-top: 1px solid rgba(201, 168, 76, 0.2);
@@ -547,7 +491,7 @@
             font-size: 0.85rem;
         }
 
-        /* ─── ADMIN ─── */
+        /* ADMIN */
         .admin-page {
             background: #0a0a0a;
         }
@@ -597,7 +541,6 @@
             border-radius: 2px;
             font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s;
             font-family: 'Barlow', sans-serif;
         }
         .form-group input:focus {
@@ -610,7 +553,6 @@
             display: none;
         }
 
-        /* Admin Dashboard */
         .admin-dashboard {
             display: none;
         }
@@ -679,8 +621,6 @@
             margin-bottom: 30px;
             color: var(--cream);
         }
-
-        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -706,8 +646,6 @@
             color: rgba(245, 240, 232, 0.5);
             margin-top: 4px;
         }
-
-        /* Product Manager */
         .add-product-form {
             background: var(--dark3);
             border: 1px solid rgba(201, 168, 76, 0.15);
@@ -749,7 +687,6 @@
             border-radius: 2px;
             font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.3s;
             font-family: 'Barlow', sans-serif;
         }
         .admin-form-group input:focus,
@@ -764,15 +701,12 @@
             height: 90px;
             resize: none;
         }
-
-        /* Image Upload */
         .img-upload-area {
             border: 2px dashed rgba(201, 168, 76, 0.3);
             border-radius: 4px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
-            transition: border-color 0.3s;
             margin-bottom: 12px;
             background: var(--dark2);
         }
@@ -825,8 +759,6 @@
             justify-content: center;
             border: none;
         }
-
-        /* Products Table */
         .admin-products-list {
             display: grid;
             gap: 16px;
@@ -890,7 +822,6 @@
             cursor: pointer;
             font-size: 0.8rem;
             font-weight: 600;
-            transition: all 0.2s;
         }
         .btn-del:hover {
             background: var(--red);
@@ -906,8 +837,6 @@
             font-size: 3rem;
             margin-bottom: 16px;
         }
-
-        /* Settings */
         .settings-box {
             background: var(--dark3);
             border: 1px solid rgba(201, 168, 76, 0.15);
@@ -921,8 +850,6 @@
             color: var(--gold);
             margin-bottom: 20px;
         }
-
-        /* Sync indicator */
         .sync-indicator {
             display: inline-flex;
             align-items: center;
@@ -948,7 +875,6 @@
             }
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -1010,18 +936,10 @@
 </head>
 <body>
 
-    <!-- ══════════════ TOAST CONTAINER ══════════════ -->
     <div class="toast-container" id="toast-container"></div>
 
-    <!-- ══════════════ LOADING OVERLAY ══════════════ -->
-    <div class="loading-overlay hidden" id="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- ══════════════ PUBLIC WEBSITE ══════════════ -->
+    <!-- ══════════════ PUBLIC SITE ══════════════ -->
     <div id="public-site" class="page active">
-
-        <!-- NAV -->
         <nav>
             <div class="nav-brand" onclick="scrollTo('hero')">Nisar <span>& Sons</span></div>
             <div class="nav-links">
@@ -1032,7 +950,6 @@
             </div>
         </nav>
 
-        <!-- HERO -->
         <div id="hero" style="padding-top:70px;">
             <div class="hero">
                 <div>
@@ -1047,86 +964,40 @@
             </div>
         </div>
 
-        <!-- PRODUCTS -->
         <section id="products-section">
             <div class="section-label">Our Portfolio</div>
             <div class="section-title">Premium Products</div>
             <p class="section-sub">We carry the finest selection of biscuits, chocolates, candies, and confectionery from leading brands across Pakistan and beyond.</p>
-            <div class="products-grid" id="public-products-grid">
-                <div class="empty-state" style="grid-column:1/-1;">
-                    <div class="empty-icon">📦</div>
-                    <p>Loading products...</p>
-                </div>
-            </div>
+            <div class="products-grid" id="public-products-grid"></div>
         </section>
 
-        <!-- BRANDS -->
         <section id="brands-section" class="brands-section">
             <div class="section-label">Our Partners</div>
             <div class="section-title">Brands We Carry</div>
-            <div class="brands-grid" id="brands-grid">
-                <!-- Populated by JS -->
-            </div>
+            <div class="brands-grid" id="brands-grid"></div>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact-section" class="contact-section">
             <div class="section-label">Get In Touch</div>
             <div class="section-title">Contact Nisar & Sons</div>
             <div class="contact-grid">
                 <div class="contact-info">
                     <h3>We'd love to hear from you.</h3>
-                    <p style="color:rgba(245,240,232,0.6);margin-bottom:30px;line-height:1.7;">
-                        Whether you're a retailer looking to stock our products or a customer with a query — our team is always ready to help.
-                    </p>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-text">
-                            <strong>Address</strong>
-                            <span id="contact-address">Nisar & Sons Agency, Main Bazar, Pakistan</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-text">
-                            <strong>Phone</strong>
-                            <span id="contact-phone">+92 300 0000000</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-text">
-                            <strong>Email</strong>
-                            <span id="contact-email">info@nisarandsons.pk</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕐</div>
-                        <div class="contact-text">
-                            <strong>Hours</strong>
-                            <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
-                        </div>
-                    </div>
+                    <p style="color:rgba(245,240,232,0.6);margin-bottom:30px;line-height:1.7;">Whether you're a retailer or a customer — our team is always ready to help.</p>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>Address</strong><span id="contact-address">Nisar & Sons Agency, Main Bazar, Pakistan</span></div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><strong>Phone</strong><span id="contact-phone">+92 300 0000000</span></div></div>
+                    <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>Email</strong><span id="contact-email">info@nisarandsons.pk</span></div></div>
+                    <div class="contact-item"><div class="contact-icon">🕐</div><div class="contact-text"><strong>Hours</strong><span>Mon – Sat: 9:00 AM – 7:00 PM</span></div></div>
                 </div>
                 <div class="contact-form">
-                    <div class="admin-form-group" style="margin-bottom:16px;">
-                        <label>Your Name</label>
-                        <input type="text" placeholder="Enter your name" id="contact-name">
-                    </div>
-                    <div class="admin-form-group" style="margin-bottom:16px;">
-                        <label>Phone / Email</label>
-                        <input type="text" placeholder="Contact details" id="contact-detail">
-                    </div>
-                    <div class="admin-form-group" style="margin-bottom:16px;">
-                        <label>Message</label>
-                        <textarea placeholder="How can we help you?" id="contact-msg"></textarea>
-                    </div>
+                    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;">Your Name</label><input type="text" placeholder="Enter your name" id="contact-name"></div>
+                    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;">Phone / Email</label><input type="text" placeholder="Contact details" id="contact-detail"></div>
+                    <div style="margin-bottom:16px;"><label style="font-size:0.72rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;">Message</label><textarea placeholder="How can we help you?" id="contact-msg"></textarea></div>
                     <button class="btn-primary" style="width:100%;" onclick="submitContact()">Send Message</button>
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
         <footer>
             <div class="footer-brand">Nisar & Sons</div>
             <p style="margin-bottom:6px;">Premium Confectionery Agency – Pakistan</p>
@@ -1136,20 +1007,12 @@
 
     <!-- ══════════════ ADMIN PAGE ══════════════ -->
     <div id="admin-page" class="page admin-page">
-
-        <!-- LOGIN -->
         <div id="admin-login" class="admin-login">
             <div class="login-box">
                 <h2>Admin Panel</h2>
                 <p>Nisar & Sons – Management Portal</p>
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="login-user" placeholder="admin">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-                </div>
+                <div class="form-group"><label>Username</label><input type="text" id="login-user" placeholder="admin"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
                 <p class="error-msg" id="login-error">Invalid username or password.</p>
                 <button class="btn-primary" style="width:100%;margin-bottom:16px;" onclick="doLogin()">Login</button>
                 <button class="btn-outline" style="width:100%;" onclick="showPage('public-site')">← Back to Website</button>
@@ -1157,15 +1020,11 @@
             </div>
         </div>
 
-        <!-- DASHBOARD -->
         <div id="admin-dashboard" class="admin-dashboard">
             <div class="admin-header">
                 <div class="brand">Nisar & Sons — Admin</div>
                 <div style="display:flex;gap:12px;align-items:center;">
-                    <span class="sync-indicator" id="sync-indicator">
-                        <span class="sync-dot"></span> Firebase Connected
-                    </span>
-                    <span style="font-size:0.8rem;color:rgba(245,240,232,0.5);">Welcome, Admin</span>
+                    <span class="sync-indicator" id="sync-indicator"><span class="sync-dot"></span> Connected</span>
                     <button class="btn-outline" style="padding:7px 18px;font-size:0.75rem;" onclick="logout()">Logout</button>
                     <button class="btn-outline" style="padding:7px 18px;font-size:0.75rem;" onclick="showPage('public-site')">View Site</button>
                 </div>
@@ -1178,8 +1037,6 @@
                     <div class="sidebar-item" onclick="showTab('tab-settings',this)">⚙️ Settings</div>
                 </div>
                 <div class="admin-content">
-
-                    <!-- Dashboard Tab -->
                     <div id="tab-dashboard" class="admin-tab active">
                         <h2>Dashboard</h2>
                         <div class="stats-grid">
@@ -1188,64 +1045,34 @@
                             <div class="stat-card"><div class="stat-val" id="stat-cats">0</div><div class="stat-label">Categories</div></div>
                             <div class="stat-card"><div class="stat-val" id="stat-imgs">0</div><div class="stat-label">Total Images</div></div>
                         </div>
-                        <div class="settings-box" style="background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.2);">
+                        <div class="settings-box" style="background:rgba(201,168,76,0.05);">
                             <h3>Quick Actions</h3>
                             <div style="display:flex;gap:12px;flex-wrap:wrap;">
                                 <button class="btn-primary" onclick="showTab('tab-products',document.querySelectorAll('.sidebar-item')[1])">+ Add Product</button>
                                 <button class="btn-outline" onclick="showTab('tab-brands',document.querySelectorAll('.sidebar-item')[2])">+ Add Brand</button>
-                                <button class="btn-outline" onclick="refreshAllData()">🔄 Refresh Data</button>
+                                <button class="btn-outline" onclick="syncFromCloud()">🔄 Sync Cloud</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Products Tab -->
                     <div id="tab-products" class="admin-tab">
                         <h2>Manage Products</h2>
                         <div class="add-product-form">
                             <h3>Add New Product</h3>
                             <div class="form-row">
-                                <div class="admin-form-group">
-                                    <label>Product Name</label>
-                                    <input type="text" id="p-name" placeholder="e.g. LU Biskits">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Category</label>
-                                    <select id="p-cat">
-                                        <option value="Biscuits">Biscuits</option>
-                                        <option value="Chocolates">Chocolates</option>
-                                        <option value="Candies">Candies</option>
-                                        <option value="Cookies">Cookies</option>
-                                        <option value="Wafers">Wafers</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
+                                <div class="admin-form-group"><label>Product Name</label><input type="text" id="p-name" placeholder="e.g. LU Biskits"></div>
+                                <div class="admin-form-group"><label>Category</label><select id="p-cat"><option value="Biscuits">Biscuits</option><option value="Chocolates">Chocolates</option><option value="Candies">Candies</option><option value="Cookies">Cookies</option><option value="Wafers">Wafers</option><option value="Other">Other</option></select></div>
                             </div>
                             <div class="form-row three">
-                                <div class="admin-form-group">
-                                    <label>Brand</label>
-                                    <input type="text" id="p-brand" placeholder="e.g. LU">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Price (PKR)</label>
-                                    <input type="number" id="p-price" placeholder="e.g. 50">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Badge (optional)</label>
-                                    <input type="text" id="p-badge" placeholder="e.g. New, Sale">
-                                </div>
+                                <div class="admin-form-group"><label>Brand</label><input type="text" id="p-brand" placeholder="e.g. LU"></div>
+                                <div class="admin-form-group"><label>Price (PKR)</label><input type="number" id="p-price" placeholder="e.g. 50"></div>
+                                <div class="admin-form-group"><label>Badge</label><input type="text" id="p-badge" placeholder="e.g. New, Sale"></div>
                             </div>
-                            <div class="admin-form-group" style="margin-bottom:16px;">
-                                <label>Description</label>
-                                <textarea id="p-desc" placeholder="Short product description..."></textarea>
-                            </div>
-                            <!-- Image Upload -->
+                            <div class="admin-form-group" style="margin-bottom:16px;"><label>Description</label><textarea id="p-desc" placeholder="Short product description..."></textarea></div>
                             <div class="admin-form-group">
-                                <label>Product Images (multiple — uploaded to Firebase Storage)</label>
+                                <label>Product Images</label>
                                 <div class="img-upload-area" onclick="document.getElementById('img-input').click()">
                                     <input type="file" id="img-input" accept="image/*" multiple onchange="handleImgs(this)">
-                                    <div class="upload-icon">📷</div>
-                                    <p>Click to upload images (JPG, PNG, WEBP)</p>
-                                    <p style="font-size:0.75rem;margin-top:4px;">You can select multiple images</p>
+                                    <div class="upload-icon">📷</div><p>Click to upload images</p>
                                 </div>
                                 <div class="img-previews" id="img-previews"></div>
                             </div>
@@ -1254,89 +1081,42 @@
                                 <button class="btn-outline" style="margin-left:10px;" onclick="clearProductForm()">Clear</button>
                             </div>
                         </div>
-
                         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:20px;color:var(--cream);">All Products</h3>
-                        <div class="admin-products-list" id="admin-products-list">
-                            <div class="empty-state">
-                                <div class="empty-icon">📦</div>
-                                <p>Loading products...</p>
-                            </div>
-                        </div>
+                        <div class="admin-products-list" id="admin-products-list"></div>
                     </div>
-
-                    <!-- Brands Tab -->
                     <div id="tab-brands" class="admin-tab">
                         <h2>Manage Brands</h2>
                         <div class="add-product-form">
                             <h3>Add New Brand</h3>
                             <div class="form-row">
-                                <div class="admin-form-group">
-                                    <label>Brand Name</label>
-                                    <input type="text" id="b-name" placeholder="e.g. Gigly, Cookania">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Category</label>
-                                    <input type="text" id="b-cat" placeholder="e.g. Chocolates">
-                                </div>
+                                <div class="admin-form-group"><label>Brand Name</label><input type="text" id="b-name" placeholder="e.g. Gigly"></div>
+                                <div class="admin-form-group"><label>Category</label><input type="text" id="b-cat" placeholder="e.g. Chocolates"></div>
                             </div>
                             <button class="btn-primary" onclick="addBrand()">Add Brand</button>
                         </div>
                         <div id="admin-brands-list"></div>
                     </div>
-
-                    <!-- Settings Tab -->
                     <div id="tab-settings" class="admin-tab">
                         <h2>Settings</h2>
                         <div class="settings-box">
                             <h3>Company Info</h3>
-                            <div class="form-row">
-                                <div class="admin-form-group">
-                                    <label>Company Name</label>
-                                    <input type="text" id="s-company" value="Nisar & Sons">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Tagline</label>
-                                    <input type="text" id="s-tagline" value="Premium Confectionery Agency">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="admin-form-group">
-                                    <label>Phone</label>
-                                    <input type="text" id="s-phone" value="+92 300 0000000">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Email</label>
-                                    <input type="text" id="s-email" value="info@nisarandsons.pk">
-                                </div>
-                            </div>
-                            <div class="admin-form-group" style="margin-bottom:0;">
-                                <label>Address</label>
-                                <input type="text" id="s-address" value="Main Bazar, Pakistan">
-                            </div>
+                            <div class="form-row"><div class="admin-form-group"><label>Company Name</label><input type="text" id="s-company" value="Nisar & Sons"></div><div class="admin-form-group"><label>Tagline</label><input type="text" id="s-tagline" value="Premium Confectionery Agency"></div></div>
+                            <div class="form-row"><div class="admin-form-group"><label>Phone</label><input type="text" id="s-phone" value="+92 300 0000000"></div><div class="admin-form-group"><label>Email</label><input type="text" id="s-email" value="info@nisarandsons.pk"></div></div>
+                            <div class="admin-form-group" style="margin-bottom:0;"><label>Address</label><input type="text" id="s-address" value="Main Bazar, Pakistan"></div>
                         </div>
                         <div class="settings-box">
                             <h3>Change Admin Password</h3>
-                            <div class="form-row">
-                                <div class="admin-form-group">
-                                    <label>New Password</label>
-                                    <input type="password" id="s-newpass" placeholder="New password">
-                                </div>
-                                <div class="admin-form-group">
-                                    <label>Confirm Password</label>
-                                    <input type="password" id="s-confpass" placeholder="Confirm password">
-                                </div>
-                            </div>
+                            <div class="form-row"><div class="admin-form-group"><label>New Password</label><input type="password" id="s-newpass" placeholder="New password"></div><div class="admin-form-group"><label>Confirm</label><input type="password" id="s-confpass" placeholder="Confirm password"></div></div>
                             <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ══════════════ FIREBASE INIT ══════════════
+        // ══════════════ FIREBASE INIT (FAST) ══════════════
         const firebaseConfig = {
             apiKey: "AIzaSyBsv2WKJWWuR3ooNZgwsPCXTzstdXdojmY",
             authDomain: "nisar-sons-f574c.firebaseapp.com",
@@ -1347,46 +1127,50 @@
             measurementId: "G-TCST6P55GG"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const storage = firebase.storage();
-        const analytics = firebase.analytics();
 
-        // Enable offline persistence (optional — helps when network is spotty)
-        db.enablePersistence({ synchronizeTabs: true }).catch(err => {
-            console.warn('Firebase offline persistence error:', err.code);
-        });
+        // Try offline persistence (non-blocking)
+        db.enablePersistence({ synchronizeTabs: true }).catch(() => {});
 
-        // ══════════════ GLOBAL STATE (local cache synced with Firestore) ══════════════
+        // ══════════════ LOCAL STORAGE CACHE KEYS ══════════════
+        const CACHE_KEYS = {
+            products: 'ns_cache_products',
+            brands: 'ns_cache_brands',
+            settings: 'ns_cache_settings'
+        };
+
+        // ══════════════ FAST CACHE HELPERS ══════════════
+        function cacheSet(key, data) {
+            try { localStorage.setItem(key, JSON.stringify(data)); } catch (e) {}
+        }
+
+        function cacheGet(key) {
+            try {
+                const raw = localStorage.getItem(key);
+                return raw ? JSON.parse(raw) : null;
+            } catch (e) { return null; }
+        }
+
+        // ══════════════ STATE ══════════════
         let state = {
             products: [],
             brands: [],
-            pendingFiles: [], // File objects for new product images
-            pendingPreviews: [], // base64 previews
-            adminPass: 'nisar2024', // default, synced from Firestore settings
-            nextId: 1,
-            firestoreReady: false
+            pendingFiles: [],
+            pendingPreviews: [],
+            adminPass: 'nisar2024',
+            cloudSynced: false
         };
 
-        // ══════════════ TOAST NOTIFICATIONS ══════════════
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icons = { success: '✅', error: '❌', info: 'ℹ️' };
-            toast.innerHTML = `<span class="toast-icon">${icons[type] || icons.info}</span> ${message}`;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // ══════════════ LOADING OVERLAY ══════════════
-        function showLoading() {
-            document.getElementById('loading-overlay').classList.remove('hidden');
-        }
-
-        function hideLoading() {
-            document.getElementById('loading-overlay').classList.add('hidden');
+        // ══════════════ TOAST ══════════════
+        function showToast(msg, type = 'success') {
+            const c = document.getElementById('toast-container');
+            const t = document.createElement('div');
+            t.className = 'toast ' + type;
+            t.textContent = (type === 'error' ? '❌ ' : type === 'info' ? 'ℹ️ ' : '✅ ') + msg;
+            c.appendChild(t);
+            setTimeout(() => t.remove(), 2500);
         }
 
         // ══════════════ NAVIGATION ══════════════
@@ -1395,7 +1179,8 @@
             document.getElementById(id).classList.add('active');
             window.scrollTo(0, 0);
             if (id === 'public-site') {
-                refreshPublicData();
+                renderPublicProducts();
+                renderBrandsPublic();
             }
         }
 
@@ -1414,423 +1199,71 @@
             if (id === 'tab-settings') loadSettingsIntoForm();
         }
 
-        // ══════════════ FIRESTORE: PRODUCTS ══════════════
-        async function fetchProductsFromFirestore() {
-            try {
-                const snapshot = await db.collection('products').orderBy('createdAt', 'desc').get();
-                const products = [];
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    products.push({
-                        id: doc.id,
-                        firestoreId: doc.id,
-                        name: data.name || '',
-                        category: data.category || 'Other',
-                        brand: data.brand || 'Nisar & Sons',
-                        price: data.price || 0,
-                        badge: data.badge || '',
-                        desc: data.desc || '',
-                        imgs: data.imgs || [],
-                        emoji: data.emoji || getCatEmoji(data.category),
-                        createdAt: data.createdAt ? data.createdAt.toDate() : new Date()
-                    });
-                });
-                state.products = products;
-                state.nextId = products.length + 1;
-                return products;
-            } catch (err) {
-                console.error('Error fetching products:', err);
-                throw err;
-            }
-        }
-
-        async function addProductToFirestore(productData, imageFiles) {
-            // 1. Generate a Firestore doc ID first
-            const docRef = db.collection('products').doc();
-            const productId = docRef.id;
-
-            // 2. Upload images to Firebase Storage
-            const imageUrls = [];
-            if (imageFiles && imageFiles.length > 0) {
-                for (let i = 0; i < imageFiles.length; i++) {
-                    const file = imageFiles[i];
-                    const ext = file.name.split('.').pop() || 'jpg';
-                    const storagePath = `products/${productId}/image_${i + 1}_${Date.now()}.${ext}`;
-                    const storageRef = storage.ref(storagePath);
-                    const uploadTask = await storageRef.put(file);
-                    const downloadUrl = await uploadTask.ref.getDownloadURL();
-                    imageUrls.push(downloadUrl);
-                }
-            }
-
-            // 3. Create Firestore document
-            const docData = {
-                name: productData.name,
-                category: productData.category,
-                brand: productData.brand,
-                price: productData.price,
-                badge: productData.badge,
-                desc: productData.desc,
-                imgs: imageUrls,
-                emoji: productData.emoji,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
-
-            await docRef.set(docData);
-
-            // Return the full product object
-            return {
-                id: productId,
-                firestoreId: productId,
-                ...docData,
-                createdAt: new Date(),
-                imgs: imageUrls
-            };
-        }
-
-        async function deleteProductFromFirestore(firestoreId) {
-            // First, get the product to find its images
-            const doc = await db.collection('products').doc(firestoreId).get();
-            if (doc.exists) {
-                const data = doc.data();
-                // Delete images from Storage
-                if (data.imgs && data.imgs.length > 0) {
-                    // Try to delete images (they're in products/{firestoreId}/ folder)
-                    try {
-                        const folderRef = storage.ref(`products/${firestoreId}`);
-                        const listResult = await folderRef.listAll();
-                        const deletePromises = listResult.items.map(item => item.delete());
-                        await Promise.all(deletePromises);
-                    } catch (storageErr) {
-                        console.warn('Could not delete some storage files:', storageErr);
-                    }
-                }
-                // Delete the Firestore document
-                await db.collection('products').doc(firestoreId).delete();
-            }
-        }
-
-        // ══════════════ FIRESTORE: BRANDS ══════════════
-        async function fetchBrandsFromFirestore() {
-            try {
-                const snapshot = await db.collection('brands').orderBy('name').get();
-                const brands = [];
-                snapshot.forEach(doc => {
-                    brands.push(doc.data().name || doc.id);
-                });
-                state.brands = brands;
-                return brands;
-            } catch (err) {
-                console.error('Error fetching brands:', err);
-                throw err;
-            }
-        }
-
-        async function addBrandToFirestore(brandName, category = '') {
-            const docId = brandName.trim();
-            await db.collection('brands').doc(docId).set({
-                name: brandName.trim(),
-                category: category.trim(),
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            return brandName.trim();
-        }
-
-        async function deleteBrandFromFirestore(brandName) {
-            await db.collection('brands').doc(brandName).delete();
-        }
-
-        // ══════════════ FIRESTORE: SETTINGS ══════════════
-        async function fetchSettingsFromFirestore() {
-            try {
-                const doc = await db.collection('settings').doc('app-settings').get();
-                if (doc.exists) {
-                    const data = doc.data();
-                    if (data.adminPassword) state.adminPass = data.adminPassword;
-                    return data;
-                }
-                // Create default settings if not exists
-                const defaultSettings = {
-                    companyName: 'Nisar & Sons',
-                    tagline: 'Premium Confectionery Agency',
-                    phone: '+92 300 0000000',
-                    email: 'info@nisarandsons.pk',
-                    address: 'Main Bazar, Pakistan',
-                    adminPassword: 'nisar2024',
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
-                await db.collection('settings').doc('app-settings').set(defaultSettings);
-                return defaultSettings;
-            } catch (err) {
-                console.error('Error fetching settings:', err);
-                return null;
-            }
-        }
-
-        async function saveSettingsToFirestore(settingsData) {
-            await db.collection('settings').doc('app-settings').set({
-                ...settingsData,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-        }
-
-        // ══════════════ ADMIN AUTH ══════════════
-        async function doLogin() {
-            const u = document.getElementById('login-user').value.trim();
-            const p = document.getElementById('login-pass').value;
-
-            // Check against stored password (fetched from Firestore or default)
-            if (u === 'admin' && p === state.adminPass) {
-                document.getElementById('admin-login').style.display = 'none';
-                document.getElementById('admin-dashboard').style.display = 'block';
-                document.getElementById('login-error').style.display = 'none';
-                document.getElementById('login-user').value = '';
-                document.getElementById('login-pass').value = '';
-                showToast('Logged in successfully!', 'success');
-                // Refresh all data from Firestore
-                await refreshAllData();
-                updateDashboard();
-                updateSyncIndicator(true);
-            } else {
-                document.getElementById('login-error').style.display = 'block';
-                updateSyncIndicator(false);
-            }
-        }
-
-        function logout() {
-            document.getElementById('admin-dashboard').style.display = 'none';
-            document.getElementById('admin-login').style.display = 'flex';
-            document.getElementById('login-user').value = '';
-            document.getElementById('login-pass').value = '';
-            showPage('public-site');
-            updateSyncIndicator(false);
-            showToast('Logged out.', 'info');
-        }
-
-        function updateSyncIndicator(connected) {
-            const indicator = document.getElementById('sync-indicator');
-            if (indicator) {
-                if (connected) {
-                    indicator.innerHTML = '<span class="sync-dot"></span> Firebase Connected';
-                    indicator.style.color = 'var(--green)';
-                    indicator.querySelector('.sync-dot').style.background = 'var(--green)';
-                } else {
-                    indicator.innerHTML = '⚠️ Offline';
-                    indicator.style.color = 'var(--red)';
-                }
-            }
-        }
-
-        // ══════════════ IMAGE UPLOAD (local preview) ══════════════
+        // ══════════════ IMAGE HANDLING ══════════════
         function handleImgs(input) {
-            const files = Array.from(input.files);
-            files.forEach(file => {
+            Array.from(input.files).forEach(file => {
                 state.pendingFiles.push(file);
                 const reader = new FileReader();
-                reader.onload = e => {
-                    state.pendingPreviews.push(e.target.result);
-                    renderPreviews();
-                };
+                reader.onload = e => { state.pendingPreviews.push(e.target.result);
+                    renderPreviews(); };
                 reader.readAsDataURL(file);
             });
             input.value = '';
         }
 
         function renderPreviews() {
-            const container = document.getElementById('img-previews');
-            container.innerHTML = state.pendingPreviews.map((img, i) => `
-            <div class="img-preview-item">
-              <img src="${img}" alt="preview">
-              <button class="del-img" onclick="removeImg(${i})">✕</button>
-            </div>
+            document.getElementById('img-previews').innerHTML = state.pendingPreviews.map((img, i) => `
+            <div class="img-preview-item"><img src="${img}"><button class="del-img" onclick="removeImg(${i})">✕</button></div>
           `).join('');
         }
 
-        function removeImg(i) {
-            state.pendingFiles.splice(i, 1);
+        function removeImg(i) { state.pendingFiles.splice(i, 1);
             state.pendingPreviews.splice(i, 1);
-            renderPreviews();
-        }
-
-        // ══════════════ PRODUCTS CRUD ══════════════
-        async function addProduct() {
-            const name = document.getElementById('p-name').value.trim();
-            if (!name) { showToast('Please enter a product name.', 'error'); return; }
-
-            const btn = document.getElementById('btn-add-product');
-            btn.disabled = true;
-            btn.textContent = 'Uploading...';
-            showLoading();
-
-            try {
-                const productData = {
-                    name,
-                    category: document.getElementById('p-cat').value,
-                    brand: document.getElementById('p-brand').value.trim() || 'Nisar & Sons',
-                    price: parseInt(document.getElementById('p-price').value) || 0,
-                    badge: document.getElementById('p-badge').value.trim(),
-                    desc: document.getElementById('p-desc').value.trim(),
-                    emoji: getCatEmoji(document.getElementById('p-cat').value)
-                };
-
-                const imageFiles = [...state.pendingFiles];
-                const newProduct = await addProductToFirestore(productData, imageFiles);
-
-                // Add to local state
-                state.products.unshift(newProduct);
-
-                // Auto-add brand if new
-                if (productData.brand && !state.brands.includes(productData.brand)) {
-                    await addBrandToFirestore(productData.brand, productData.category);
-                    state.brands.push(productData.brand);
-                    renderBrandsPublic();
-                    renderAdminBrands();
-                }
-
-                clearProductForm();
-                renderAdminProducts();
-                renderPublicProducts();
-                updateDashboard();
-                showToast(`✅ "${name}" added successfully with ${imageFiles.length} image(s)!`, 'success');
-            } catch (err) {
-                console.error('Error adding product:', err);
-                showToast('❌ Failed to add product. Please try again.', 'error');
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'Add Product';
-                hideLoading();
-            }
-        }
-
-        function clearProductForm() {
-            ['p-name', 'p-brand', 'p-price', 'p-badge', 'p-desc'].forEach(id => document.getElementById(id)
-                .value = '');
-            document.getElementById('p-cat').value = 'Biscuits';
-            state.pendingFiles = [];
-            state.pendingPreviews = [];
-            renderPreviews();
-        }
-
-        async function deleteProduct(firestoreId) {
-            if (!confirm('Delete this product? This will also remove its images from storage.')) return;
-            showLoading();
-            try {
-                await deleteProductFromFirestore(firestoreId);
-                state.products = state.products.filter(p => p.firestoreId !== firestoreId);
-                renderAdminProducts();
-                renderPublicProducts();
-                updateDashboard();
-                showToast('Product deleted successfully.', 'success');
-            } catch (err) {
-                console.error('Error deleting product:', err);
-                showToast('❌ Failed to delete product.', 'error');
-            } finally {
-                hideLoading();
-            }
-        }
+            renderPreviews(); }
 
         function getCatEmoji(cat) {
-            const map = { Biscuits: '🍪', Chocolates: '🍫', Cookies: '🥐', Candies: '🍬', Wafers: '🧇', Other: '📦' };
-            return map[cat] || '📦';
+            const m = { Biscuits: '🍪', Chocolates: '🍫', Cookies: '🥐', Candies: '🍬', Wafers: '🧇' };
+            return m[cat] || '📦';
         }
 
-        // ══════════════ BRANDS CRUD ══════════════
-        async function addBrand() {
-            const name = document.getElementById('b-name').value.trim();
-            const cat = document.getElementById('b-cat').value.trim();
-            if (!name) { showToast('Enter a brand name.', 'error'); return; }
-            if (state.brands.includes(name)) { showToast('Brand already exists.', 'info'); return; }
-
-            try {
-                await addBrandToFirestore(name, cat);
-                state.brands.push(name);
-                document.getElementById('b-name').value = '';
-                document.getElementById('b-cat').value = '';
-                renderAdminBrands();
-                renderBrandsPublic();
-                updateDashboard();
-                showToast(`✅ Brand "${name}" added!`, 'success');
-            } catch (err) {
-                console.error('Error adding brand:', err);
-                showToast('❌ Failed to add brand.', 'error');
-            }
-        }
-
-        async function deleteBrand(name) {
-            if (!confirm(`Delete brand "${name}"?`)) return;
-            try {
-                await deleteBrandFromFirestore(name);
-                state.brands = state.brands.filter(b => b !== name);
-                renderAdminBrands();
-                renderBrandsPublic();
-                updateDashboard();
-                showToast(`Brand "${name}" deleted.`, 'success');
-            } catch (err) {
-                console.error('Error deleting brand:', err);
-                showToast('❌ Failed to delete brand.', 'error');
-            }
-        }
-
-        // ══════════════ RENDER PUBLIC ══════════════
+        // ══════════════ RENDER PUBLIC (INSTANT) ══════════════
         function renderPublicProducts() {
             const grid = document.getElementById('public-products-grid');
             if (!state.products.length) {
                 grid.innerHTML =
-                    '<p style="color:rgba(245,240,232,0.4);text-align:center;grid-column:1/-1;">No products available yet.</p>';
+                    '<p style="color:rgba(245,240,232,0.4);text-align:center;grid-column:1/-1;">No products yet.</p>';
                 return;
             }
             grid.innerHTML = state.products.map(p => {
                 const hasImgs = p.imgs && p.imgs.length > 0;
-                const imgSlides = hasImgs ?
+                const pid = p.firestoreId || p.id || Math.random().toString(36);
+                const slides = hasImgs ?
                     p.imgs.map((img, i) =>
-                        `<img src="${img}" alt="${p.name}" class="${i === 0 ? 'active' : ''}" loading="lazy">`)
-                    .join('') :
-                    `<div class="placeholder-img">${p.emoji}</div>`;
+                        `<img src="${img}" alt="${p.name}" class="${i===0?'active':''}" loading="lazy">`).join(
+                        '') :
+                    `<div class="placeholder-img">${p.emoji||getCatEmoji(p.category)}</div>`;
                 const dots = hasImgs && p.imgs.length > 1 ?
-                    `<div class="img-dots">${p.imgs.map((_, i) => `<div class="img-dot ${i === 0 ? 'active' : ''}" onclick="event.stopPropagation();cycleImg('${p.firestoreId || p.id}',${i})"></div>`).join('')}</div>` :
+                    `<div class="img-dots">${p.imgs.map((_,i)=>`<div class="img-dot ${i===0?'active':''}" onclick="event.stopPropagation();cycleImg('${pid}',${i})"></div>`).join('')}</div>` :
                     '';
-                const pid = p.firestoreId || p.id;
-                return `
-              <div class="product-card">
-                <div class="product-imgs" id="pimgs-${pid}">
-                  ${imgSlides}
-                  ${dots}
-                  ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
-                </div>
-                <div class="product-info">
-                  <div class="product-cat">${p.category}</div>
-                  <div class="product-name">${p.name}</div>
-                  <div class="product-desc">${p.desc || 'Premium quality product from ' + p.brand + '.'}</div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <span style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;">${p.price ? 'PKR ' + p.price : 'Contact for Price'}</span>
-                    <span style="font-size:0.75rem;color:rgba(245,240,232,0.4);">${p.brand}</span>
-                  </div>
-                </div>
-              </div>`;
+                return `<div class="product-card"><div class="product-imgs" id="pimgs-${pid}">${slides}${dots}${p.badge?`<div class="product-badge">${p.badge}</div>`:''}</div>
+              <div class="product-info"><div class="product-cat">${p.category}</div><div class="product-name">${p.name}</div>
+              <div class="product-desc">${p.desc||'Premium quality from '+p.brand+'.'}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;">${p.price?'PKR '+p.price:'Contact'}</span><span style="font-size:0.75rem;color:rgba(245,240,232,0.4);">${p.brand}</span></div></div></div>`;
             }).join('');
         }
 
-        function cycleImg(productId, idx) {
-            const container = document.getElementById('pimgs-' + productId);
-            if (!container) return;
-            container.querySelectorAll('img').forEach((img, i) => img.classList.toggle('active', i === idx));
-            container.querySelectorAll('.img-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        function cycleImg(pid, idx) {
+            const c = document.getElementById('pimgs-' + pid);
+            if (!c) return;
+            c.querySelectorAll('img').forEach((img, i) => img.classList.toggle('active', i === idx));
+            c.querySelectorAll('.img-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
         }
 
         function renderBrandsPublic() {
             const grid = document.getElementById('brands-grid');
-            if (!state.brands.length) {
-                grid.innerHTML = '<p style="color:rgba(245,240,232,0.4);">No brands listed yet.</p>';
-                return;
-            }
-            grid.innerHTML = state.brands.map(b => `<div class="brand-chip">${b}</div>`).join('');
-        }
-
-        function updateContactInfo(settings) {
-            if (!settings) return;
-            if (settings.address) document.getElementById('contact-address').textContent = settings.address;
-            if (settings.phone) document.getElementById('contact-phone').textContent = settings.phone;
-            if (settings.email) document.getElementById('contact-email').textContent = settings.email;
+            grid.innerHTML = state.brands.length ?
+                state.brands.map(b => `<div class="brand-chip">${b}</div>`).join('') :
+                '<p style="color:rgba(245,240,232,0.4);">No brands yet.</p>';
         }
 
         // ══════════════ RENDER ADMIN ══════════════
@@ -1838,266 +1271,326 @@
             const list = document.getElementById('admin-products-list');
             if (!state.products.length) {
                 list.innerHTML =
-                    `<div class="empty-state"><div class="empty-icon">📦</div><p>No products yet. Add your first product above!</p></div>`;
+                    '<div class="empty-state"><div class="empty-icon">📦</div><p>No products yet.</p></div>';
                 return;
             }
             list.innerHTML = state.products.map(p => {
                 const fid = p.firestoreId || p.id;
-                const thumb = p.imgs && p.imgs.length ?
-                    `<img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">` :
-                    p.emoji;
-                return `
-              <div class="admin-product-row">
-                <div class="admin-product-thumb">${thumb}</div>
-                <div class="admin-product-info">
-                  <h4>${p.name}</h4>
-                  <p>${p.desc ? p.desc.substring(0, 80) + '...' : ''}</p>
-                  <div class="cat-tag">${p.category}</div>
-                  <span style="font-size:0.75rem;color:var(--gold);margin-left:8px;">${p.imgs ? p.imgs.length : 0} image(s)</span>
-                  ${p.price ? `<span style="font-size:0.8rem;color:rgba(245,240,232,0.6);margin-left:8px;">PKR ${p.price}</span>` : ''}
-                </div>
-                <div class="admin-product-actions">
-                  <button class="btn-del" onclick="deleteProduct('${fid}')">Delete</button>
-                </div>
-              </div>`;
+                return `<div class="admin-product-row">
+              <div class="admin-product-thumb">${(p.imgs&&p.imgs.length)?`<img src="${p.imgs[0]}" loading="lazy">`:p.emoji||'📦'}</div>
+              <div class="admin-product-info"><h4>${p.name}</h4><p>${(p.desc||'').substring(0,80)}</p><div class="cat-tag">${p.category}</div> <span style="font-size:0.75rem;color:var(--gold);">${p.imgs?p.imgs.length:0} img</span> ${p.price?`<span style="font-size:0.8rem;color:rgba(245,240,232,0.6);">PKR ${p.price}</span>`:''}</div>
+              <div class="admin-product-actions"><button class="btn-del" onclick="deleteProduct('${fid}')">Delete</button></div></div>`;
             }).join('');
         }
 
         function renderAdminBrands() {
             const list = document.getElementById('admin-brands-list');
-            if (!state.brands.length) {
-                list.innerHTML = '<p style="color:rgba(245,240,232,0.4);">No brands added yet.</p>';
-                return;
-            }
-            list.innerHTML = `<div style="display:flex;flex-wrap:wrap;gap:10px;">
-            ${state.brands.map(b => `
-              <div style="background:var(--dark3);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:12px 18px;display:flex;align-items:center;gap:12px;">
-                <span style="font-weight:600;">${b}</span>
-                <button class="btn-del" style="padding:4px 10px;font-size:0.75rem;" onclick="deleteBrand('${b.replace(/'/g, "\\'")}')">×</button>
-              </div>`).join('')}
-          </div>`;
+            list.innerHTML = state.brands.length ?
+                `<div style="display:flex;flex-wrap:wrap;gap:10px;">${state.brands.map(b=>`<div style="background:var(--dark3);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:12px 18px;display:flex;align-items:center;gap:12px;"><span style="font-weight:600;">${b}</span><button class="btn-del" style="padding:4px 10px;font-size:0.75rem;" onclick="deleteBrand('${b.replace(/'/g,"\\'")}')">×</button></div>`).join('')}</div>` :
+                '<p style="color:rgba(245,240,232,0.4);">No brands yet.</p>';
         }
 
         function updateDashboard() {
             document.getElementById('stat-products').textContent = state.products.length;
             document.getElementById('stat-brands').textContent = state.brands.length;
-            const cats = new Set(state.products.map(p => p.category));
-            document.getElementById('stat-cats').textContent = cats.size;
-            const imgs = state.products.reduce((sum, p) => sum + (p.imgs ? p.imgs.length : 0), 0);
-            document.getElementById('stat-imgs').textContent = imgs;
+            document.getElementById('stat-cats').textContent = new Set(state.products.map(p => p.category)).size;
+            document.getElementById('stat-imgs').textContent = state.products.reduce((s, p) => s + (p.imgs ? p.imgs
+                .length : 0), 0);
         }
 
-        // ══════════════ SETTINGS ══════════════
+        // ══════════════ FIRESTORE OPS (FAST) ══════════════
+        async function fetchProducts() {
+            const snap = await db.collection('products').orderBy('createdAt', 'desc').get();
+            const prods = [];
+            snap.forEach(doc => { const d = doc.data();
+                prods.push({ ...d, firestoreId: doc.id, id: doc.id, createdAt: d.createdAt?.toDate() || new Date() }); });
+            return prods;
+        }
+
+        async function fetchBrands() {
+            const snap = await db.collection('brands').orderBy('name').get();
+            const brands = [];
+            snap.forEach(doc => brands.push(doc.data().name || doc.id));
+            return brands;
+        }
+
+        async function fetchSettings() {
+            const doc = await db.collection('settings').doc('app-settings').get();
+            if (doc.exists) return doc.data();
+            const def = { companyName: 'Nisar & Sons', tagline: 'Premium Confectionery Agency', phone: '+92 300 0000000',
+                email: 'info@nisarandsons.pk', address: 'Main Bazar, Pakistan', adminPassword: 'nisar2024' };
+            await db.collection('settings').doc('app-settings').set({ ...def, updatedAt: firebase.firestore.FieldValue
+                    .serverTimestamp() });
+            return def;
+        }
+
+        async function syncFromCloud() {
+            try {
+                const [prods, brands, settings] = await Promise.all([fetchProducts(), fetchBrands(), fetchSettings()]);
+                state.products = prods;
+                state.brands = brands;
+                state.adminPass = settings.adminPassword || 'nisar2024';
+                state.cloudSynced = true;
+                cacheSet(CACHE_KEYS.products, prods);
+                cacheSet(CACHE_KEYS.brands, brands);
+                cacheSet(CACHE_KEYS.settings, settings);
+                updateContactInfo(settings);
+                renderPublicProducts();
+                renderBrandsPublic();
+                renderAdminProducts();
+                renderAdminBrands();
+                updateDashboard();
+                document.getElementById('sync-indicator').innerHTML =
+                    '<span class="sync-dot"></span> Cloud Synced';
+                showToast('Data synced from cloud!', 'success');
+            } catch (e) {
+                console.warn('Sync failed:', e.message);
+                document.getElementById('sync-indicator').innerHTML = '⚠️ Offline';
+                showToast('Using cached data', 'info');
+            }
+        }
+
+        async function addProduct() {
+            const name = document.getElementById('p-name').value.trim();
+            if (!name) { showToast('Enter product name', 'error'); return; }
+            const btn = document.getElementById('btn-add-product');
+            btn.disabled = true;
+            btn.textContent = 'Uploading...';
+            try {
+                const docRef = db.collection('products').doc();
+                const pid = docRef.id;
+                const imgs = [];
+                if (state.pendingFiles.length) {
+                    for (let i = 0; i < state.pendingFiles.length; i++) {
+                        const f = state.pendingFiles[i];
+                        const ext = f.name.split('.').pop() || 'jpg';
+                        const ref = storage.ref(`products/${pid}/img_${i}_${Date.now()}.${ext}`);
+                        const up = await ref.put(f);
+                        imgs.push(await up.ref.getDownloadURL());
+                    }
+                }
+                const data = {
+                    name,
+                    category: document.getElementById('p-cat').value,
+                    brand: document.getElementById('p-brand').value.trim() || 'Nisar & Sons',
+                    price: parseInt(document.getElementById('p-price').value) || 0,
+                    badge: document.getElementById('p-badge').value.trim(),
+                    desc: document.getElementById('p-desc').value.trim(),
+                    imgs,
+                    emoji: getCatEmoji(document.getElementById('p-cat').value),
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                await docRef.set(data);
+                const product = { ...data, firestoreId: pid, id: pid, createdAt: new Date() };
+                state.products.unshift(product);
+                if (data.brand && !state.brands.includes(data.brand)) {
+                    await db.collection('brands').doc(data.brand).set({ name: data.brand, category: data.category,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+                    state.brands.push(data.brand);
+                    renderBrandsPublic();
+                    renderAdminBrands();
+                }
+                cacheSet(CACHE_KEYS.products, state.products);
+                cacheSet(CACHE_KEYS.brands, state.brands);
+                clearProductForm();
+                renderAdminProducts();
+                renderPublicProducts();
+                updateDashboard();
+                showToast(`"${name}" added!`, 'success');
+            } catch (e) { showToast('Failed: ' + e.message, 'error'); } finally { btn.disabled = false;
+                btn.textContent = 'Add Product'; }
+        }
+
+        function clearProductForm() {
+            ['p-name', 'p-brand', 'p-price', 'p-badge', 'p-desc'].forEach(id => document.getElementById(id).value =
+                '');
+            document.getElementById('p-cat').value = 'Biscuits';
+            state.pendingFiles = [];
+            state.pendingPreviews = [];
+            renderPreviews();
+        }
+
+        async function deleteProduct(fid) {
+            if (!confirm('Delete this product?')) return;
+            try {
+                const prod = state.products.find(p => p.firestoreId === fid);
+                if (prod?.imgs?.length) {
+                    try {
+                        const list = await storage.ref(`products/${fid}`).listAll();
+                        await Promise.all(list.items.map(i => i.delete()));
+                    } catch (e) {}
+                }
+                await db.collection('products').doc(fid).delete();
+                state.products = state.products.filter(p => p.firestoreId !== fid);
+                cacheSet(CACHE_KEYS.products, state.products);
+                renderAdminProducts();
+                renderPublicProducts();
+                updateDashboard();
+                showToast('Deleted.', 'success');
+            } catch (e) { showToast('Failed to delete', 'error'); }
+        }
+
+        async function addBrand() {
+            const name = document.getElementById('b-name').value.trim();
+            if (!name) { showToast('Enter brand name', 'error'); return; }
+            if (state.brands.includes(name)) { showToast('Already exists', 'info'); return; }
+            try {
+                await db.collection('brands').doc(name).set({ name, category: document.getElementById('b-cat').value
+                        .trim(), createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+                state.brands.push(name);
+                cacheSet(CACHE_KEYS.brands, state.brands);
+                document.getElementById('b-name').value = '';
+                document.getElementById('b-cat').value = '';
+                renderAdminBrands();
+                renderBrandsPublic();
+                updateDashboard();
+                showToast(`"${name}" added!`, 'success');
+            } catch (e) { showToast('Failed', 'error'); }
+        }
+
+        async function deleteBrand(name) {
+            if (!confirm(`Delete "${name}"?`)) return;
+            try {
+                await db.collection('brands').doc(name).delete();
+                state.brands = state.brands.filter(b => b !== name);
+                cacheSet(CACHE_KEYS.brands, state.brands);
+                renderAdminBrands();
+                renderBrandsPublic();
+                updateDashboard();
+                showToast('Deleted.', 'success');
+            } catch (e) { showToast('Failed', 'error'); }
+        }
+
+        function updateContactInfo(s) {
+            if (!s) return;
+            if (s.address) document.getElementById('contact-address').textContent = s.address;
+            if (s.phone) document.getElementById('contact-phone').textContent = s.phone;
+            if (s.email) document.getElementById('contact-email').textContent = s.email;
+        }
+
         async function loadSettingsIntoForm() {
             try {
-                const settings = await fetchSettingsFromFirestore();
-                if (settings) {
-                    document.getElementById('s-company').value = settings.companyName || 'Nisar & Sons';
-                    document.getElementById('s-tagline').value = settings.tagline || 'Premium Confectionery Agency';
-                    document.getElementById('s-phone').value = settings.phone || '+92 300 0000000';
-                    document.getElementById('s-email').value = settings.email || 'info@nisarandsons.pk';
-                    document.getElementById('s-address').value = settings.address || 'Main Bazar, Pakistan';
-                }
-            } catch (err) {
-                console.error('Error loading settings:', err);
-            }
+                const s = await fetchSettings();
+                document.getElementById('s-company').value = s.companyName || '';
+                document.getElementById('s-tagline').value = s.tagline || '';
+                document.getElementById('s-phone').value = s.phone || '';
+                document.getElementById('s-email').value = s.email || '';
+                document.getElementById('s-address').value = s.address || '';
+            } catch (e) {}
         }
 
         async function saveSettings() {
             const np = document.getElementById('s-newpass').value;
             const cp = document.getElementById('s-confpass').value;
             if (np) {
-                if (np !== cp) { showToast('Passwords do not match!', 'error'); return; }
+                if (np !== cp) { showToast('Passwords mismatch', 'error'); return; }
                 state.adminPass = np;
                 document.getElementById('s-newpass').value = '';
                 document.getElementById('s-confpass').value = '';
             }
-
-            const settingsData = {
+            const data = {
                 companyName: document.getElementById('s-company').value.trim(),
                 tagline: document.getElementById('s-tagline').value.trim(),
                 phone: document.getElementById('s-phone').value.trim(),
                 email: document.getElementById('s-email').value.trim(),
                 address: document.getElementById('s-address').value.trim(),
-                adminPassword: state.adminPass
+                adminPassword: state.adminPass,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
-
-            showLoading();
             try {
-                await saveSettingsToFirestore(settingsData);
-                updateContactInfo(settingsData);
-                showToast('✅ Settings saved successfully!', 'success');
-            } catch (err) {
-                console.error('Error saving settings:', err);
-                showToast('❌ Failed to save settings. Check your connection.', 'error');
-            } finally {
-                hideLoading();
+                await db.collection('settings').doc('app-settings').set(data, { merge: true });
+                cacheSet(CACHE_KEYS.settings, data);
+                updateContactInfo(data);
+                showToast('Settings saved!', 'success');
+            } catch (e) { showToast('Failed to save', 'error'); }
+        }
+
+        async function doLogin() {
+            const u = document.getElementById('login-user').value.trim();
+            const p = document.getElementById('login-pass').value;
+            if (u === 'admin' && p === state.adminPass) {
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                document.getElementById('login-error').style.display = 'none';
+                document.getElementById('login-user').value = '';
+                document.getElementById('login-pass').value = '';
+                showToast('Welcome!', 'success');
+                syncFromCloud();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
             }
         }
 
-        // ══════════════ CONTACT FORM ══════════════
+        function logout() {
+            document.getElementById('admin-dashboard').style.display = 'none';
+            document.getElementById('admin-login').style.display = 'flex';
+            showPage('public-site');
+            showToast('Logged out', 'info');
+        }
+
         function submitContact() {
-            const name = document.getElementById('contact-name').value.trim();
-            const detail = document.getElementById('contact-detail').value.trim();
-            const msg = document.getElementById('contact-msg').value.trim();
-            if (!name || !detail || !msg) {
-                showToast('Please fill all fields.', 'error');
-                return;
+            const n = document.getElementById('contact-name').value.trim();
+            const d = document.getElementById('contact-detail').value.trim();
+            const m = document.getElementById('contact-msg').value.trim();
+            if (!n || !d || !m) { showToast('Fill all fields', 'error'); return; }
+            db.collection('messages').add({ name: n, contactDetail: d, message: m, createdAt: firebase.firestore
+                    .FieldValue.serverTimestamp() }).catch(() => {});
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-detail').value = '';
+            document.getElementById('contact-msg').value = '';
+            showToast('Message sent!', 'success');
+        }
+
+        // ══════════════ INIT (INSTANT + BACKGROUND) ══════════════
+        function init() {
+            // 1. Load from cache INSTANTLY
+            const cachedProds = cacheGet(CACHE_KEYS.products);
+            const cachedBrands = cacheGet(CACHE_KEYS.brands);
+            const cachedSettings = cacheGet(CACHE_KEYS.settings);
+
+            if (cachedProds) state.products = cachedProds;
+            if (cachedBrands) state.brands = cachedBrands;
+            if (cachedSettings) {
+                state.adminPass = cachedSettings.adminPassword || 'nisar2024';
+                updateContactInfo(cachedSettings);
             }
-            // Store contact message in Firestore (optional)
-            db.collection('messages').add({
-                name,
-                contactDetail: detail,
-                message: msg,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(() => {
-                showToast('Thank you! We will get back to you shortly.', 'success');
-                document.getElementById('contact-name').value = '';
-                document.getElementById('contact-detail').value = '';
-                document.getElementById('contact-msg').value = '';
-            }).catch(err => {
-                console.error('Error sending message:', err);
-                // Still show success for UX
-                showToast('Thank you! We will get back to you shortly.', 'success');
-                document.getElementById('contact-name').value = '';
-                document.getElementById('contact-detail').value = '';
-                document.getElementById('contact-msg').value = '';
+
+            // Default fallback if nothing cached
+            if (!state.products.length) {
+                state.products = [
+                    { id: 's1', firestoreId: 's1', name: 'LU Biskits', category: 'Biscuits', brand: 'LU', price: 45,
+                        badge: 'Popular', desc: 'Classic crispy biscuits.', imgs: [], emoji: '🍪', createdAt: new Date() },
+                    { id: 's2', firestoreId: 's2', name: 'Gigly Chocolate', category: 'Chocolates', brand: 'Gigly',
+                        price: 60, badge: 'New', desc: 'Rich creamy chocolate.', imgs: [], emoji: '🍫',
+                    createdAt: new Date() },
+                    { id: 's3', firestoreId: 's3', name: 'Cookania Cookies', category: 'Cookies', brand: 'Cookania',
+                        price: 80, badge: '', desc: 'Premium butter cookies.', imgs: [], emoji: '🥐', createdAt: new Date() },
+                    { id: 's4', firestoreId: 's4', name: 'Royal Glory Candy', category: 'Candies', brand: 'Royal Glory',
+                        price: 5, badge: 'Best Seller', desc: 'Fruit-flavoured candies.', imgs: [], emoji: '🍬',
+                        createdAt: new Date() },
+                    { id: 's5', firestoreId: 's5', name: 'Master Wafers', category: 'Wafers', brand: 'Master', price: 35,
+                        badge: '', desc: 'Light crispy wafers.', imgs: [], emoji: '🧇', createdAt: new Date() }
+                ];
+            }
+            if (!state.brands.length) {
+                state.brands = ['LU', 'Gigly', 'Cookania', 'Royal Glory', 'Master', 'Bisconni', 'Peek Freans'];
+            }
+
+            // 2. Render immediately
+            renderPublicProducts();
+            renderBrandsPublic();
+            updateDashboard();
+
+            // 3. Background sync from Firestore (non-blocking)
+            syncFromCloud().catch(() => {
+                document.getElementById('sync-indicator').innerHTML = '⚠️ Offline';
             });
+
+            console.log('⚡ Nisar & Sons — Fast Loaded');
         }
 
-        // ══════════════ REFRESH ALL DATA ══════════════
-        async function refreshAllData() {
-            showLoading();
-            try {
-                const [products, brands, settings] = await Promise.all([
-                    fetchProductsFromFirestore(),
-                    fetchBrandsFromFirestore(),
-                    fetchSettingsFromFirestore()
-                ]);
-                state.products = products;
-                state.brands = brands;
-                if (settings) {
-                    state.adminPass = settings.adminPassword || 'nisar2024';
-                    updateContactInfo(settings);
-                }
-                state.firestoreReady = true;
-                renderPublicProducts();
-                renderBrandsPublic();
-                renderAdminProducts();
-                renderAdminBrands();
-                updateDashboard();
-                updateSyncIndicator(true);
-                showToast('✅ Data synced from cloud!', 'success');
-            } catch (err) {
-                console.error('Error refreshing data:', err);
-                updateSyncIndicator(false);
-                showToast('⚠️ Could not sync. Using cached data.', 'error');
-                // Still render whatever we have
-                renderPublicProducts();
-                renderBrandsPublic();
-                renderAdminProducts();
-                renderAdminBrands();
-                updateDashboard();
-            } finally {
-                hideLoading();
-            }
-        }
-
-        async function refreshPublicData() {
-            try {
-                const [products, brands, settings] = await Promise.all([
-                    fetchProductsFromFirestore(),
-                    fetchBrandsFromFirestore(),
-                    fetchSettingsFromFirestore()
-                ]);
-                state.products = products;
-                state.brands = brands;
-                if (settings) updateContactInfo(settings);
-                state.firestoreReady = true;
-                renderPublicProducts();
-                renderBrandsPublic();
-                updateSyncIndicator(true);
-            } catch (err) {
-                console.error('Error refreshing public data:', err);
-                updateSyncIndicator(false);
-                renderPublicProducts();
-                renderBrandsPublic();
-            }
-        }
-
-        // ══════════════ INIT ══════════════
-        async function init() {
-            showLoading();
-            try {
-                const [products, brands, settings] = await Promise.all([
-                    fetchProductsFromFirestore(),
-                    fetchBrandsFromFirestore(),
-                    fetchSettingsFromFirestore()
-                ]);
-                state.products = products;
-                state.brands = brands;
-                if (settings) {
-                    state.adminPass = settings.adminPassword || 'nisar2024';
-                    updateContactInfo(settings);
-                }
-                state.firestoreReady = true;
-                updateSyncIndicator(true);
-            } catch (err) {
-                console.warn('Firebase init error — using default data:', err.message);
-                // Fallback: use default sample products if Firestore is unreachable
-                if (!state.products.length) {
-                    state.products = [
-                        { id: 'sample1', firestoreId: 'sample1', name: 'LU Biskits', category: 'Biscuits',
-                            brand: 'LU', price: 45, badge: 'Popular',
-                            desc: 'Classic crispy biscuits loved by all generations.', imgs: [], emoji: '🍪',
-                            createdAt: new Date() },
-                        { id: 'sample2', firestoreId: 'sample2', name: 'Gigly Chocolate',
-                            category: 'Chocolates', brand: 'Gigly', price: 60, badge: 'New',
-                            desc: 'Rich creamy chocolate with a smooth texture.', imgs: [], emoji: '🍫',
-                            createdAt: new Date() },
-                        { id: 'sample3', firestoreId: 'sample3', name: 'Cookania Cookies',
-                            category: 'Cookies', brand: 'Cookania', price: 80, badge: '',
-                            desc: 'Premium butter cookies with a delightful crunch.', imgs: [], emoji: '🥐',
-                            createdAt: new Date() },
-                        { id: 'sample4', firestoreId: 'sample4', name: 'Royal Glory Candy',
-                            category: 'Candies', brand: 'Royal Glory', price: 5, badge: 'Best Seller',
-                            desc: 'Assorted fruit-flavoured hard candies.', imgs: [], emoji: '🍬',
-                            createdAt: new Date() },
-                        { id: 'sample5', firestoreId: 'sample5', name: 'Master Wafers', category: 'Wafers',
-                            brand: 'Master', price: 35, badge: '',
-                            desc: 'Light crispy wafers available in multiple flavours.', imgs: [],
-                            emoji: '🧇', createdAt: new Date() }
-                    ];
-                }
-                if (!state.brands.length) {
-                    state.brands = ['LU', 'Gigly', 'Cookania', 'Royal Glory', 'Master', 'Bisconni', 'Peek Freans'];
-                }
-                state.firestoreReady = false;
-                updateSyncIndicator(false);
-                showToast('⚠️ Running in offline mode — using local data.', 'info');
-            } finally {
-                hideLoading();
-                renderPublicProducts();
-                renderBrandsPublic();
-                renderAdminProducts();
-                renderAdminBrands();
-                updateDashboard();
-            }
-        }
-
-        // Start the app
+        // Start
         init();
-
-        // Log page view to Firebase Analytics
-        if (analytics) {
-            analytics.logEvent('page_view', { page_title: 'Home', page_location: window.location.href });
-        }
-
-        console.log('🔥 Nisar & Sons — Firebase Integrated');
-        console.log('📦 Firestore: products, brands, settings, messages collections');
-        console.log('📷 Storage: product images in products/{productId}/');
-        console.log('📊 Analytics: page views and events tracked');
-        console.log('💡 Tip: Set up Firestore Security Rules to protect your data!');
     </script>
 </body>
 </html>
