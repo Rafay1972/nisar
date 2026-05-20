@@ -6,7 +6,7 @@
     <title>Nisar & Sons – Premium Confectionery Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Firebase SDKs (with fail‑safe fallback) -->
+    <!-- Firebase SDKs (fail‑safe) -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
@@ -19,8 +19,10 @@
             --dark2: #1a1a1a;
             --dark3: #252525;
             --cream: #f5f0e8;
+            --white: #ffffff;
             --red: #c0392b;
             --green: #27ae60;
+            --whatsapp: #25D366;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:'Barlow',sans-serif; background:var(--dark); color:var(--cream); overflow-x:hidden; }
@@ -43,6 +45,16 @@
         .nav-links .btn-admin { background:var(--gold); color:var(--dark); padding:8px 20px; border-radius:2px; font-weight:600; font-size:0.8rem; }
         .nav-links .btn-admin:hover { background:var(--gold-light); }
 
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position:fixed; bottom:30px; right:30px; z-index:999;
+            background:var(--whatsapp); color:white; width:60px; height:60px;
+            border-radius:50%; display:flex; align-items:center; justify-content:center;
+            font-size:30px; box-shadow:0 4px 20px rgba(0,0,0,0.4);
+            cursor:pointer; transition:transform 0.3s; text-decoration:none;
+        }
+        .whatsapp-float:hover { transform:scale(1.1); }
+
         .hero { height:100vh; background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 50%,#1c1200 100%); display:flex; align-items:center; justify-content:center; text-align:center; padding:0 20px; position:relative; overflow:hidden; }
         .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(201,168,76,0.08) 0%,transparent 70%); }
         .hero-badge { display:inline-block; border:1px solid var(--gold); color:var(--gold); font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; padding:6px 20px; margin-bottom:30px; animation:fadeUp 0.8s ease both; }
@@ -55,11 +67,20 @@
         .btn-primary:disabled { opacity:0.5; cursor:not-allowed; }
         .btn-outline { background:transparent; color:var(--cream); padding:14px 36px; font-size:0.85rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; border:1px solid rgba(245,240,232,0.4); cursor:pointer; border-radius:2px; transition:all 0.3s; }
         .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+        .btn-whatsapp { background:var(--whatsapp); color:white; }
+        .btn-whatsapp:hover { background:#1ebe57; }
 
         section { padding:100px 40px; }
         .section-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
         .section-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; margin-bottom:20px; line-height:1.1; }
         .section-sub { color:rgba(245,240,232,0.6); font-size:1rem; max-width:550px; line-height:1.7; margin-bottom:60px; }
+
+        /* About Section */
+        #about-section { background:var(--dark); }
+        .about-content { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+        .about-text p { color:rgba(245,240,232,0.7); font-size:1rem; line-height:1.8; margin-bottom:20px; }
+
+        /* Products / Shop Section */
         #products-section { background:var(--dark2); }
         .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; margin-top:20px; }
         .product-card { background:var(--dark3); border:1px solid rgba(201,168,76,0.15); border-radius:4px; overflow:hidden; transition:all 0.3s; }
@@ -77,12 +98,17 @@
         .product-cat { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
         .product-name { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; margin-bottom:8px; }
         .product-desc { font-size:0.85rem; color:rgba(245,240,232,0.55); line-height:1.6; margin-bottom:16px; }
+        .product-price { color:var(--gold); font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; }
+        .product-order-btn { background:var(--whatsapp); color:white; border:none; padding:8px 16px; border-radius:2px; cursor:pointer; font-weight:600; font-size:0.8rem; transition:background 0.3s; margin-top:10px; width:100%; }
+        .product-order-btn:hover { background:#1ebe57; }
 
+        /* Brands */
         .brands-section { background:var(--dark); text-align:center; }
         .brands-grid { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:40px; }
         .brand-chip { background:var(--dark3); border:1px solid rgba(201,168,76,0.2); padding:14px 28px; border-radius:2px; font-size:0.9rem; font-weight:600; letter-spacing:1px; transition:all 0.3s; }
         .brand-chip:hover { border-color:var(--gold); color:var(--gold); }
 
+        /* Contact */
         .contact-section { background:var(--dark2); }
         .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
         .contact-info h3 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:20px; }
@@ -109,6 +135,7 @@
         .form-group input { width:100%; background:var(--dark3); border:1px solid rgba(201,168,76,0.2); color:var(--cream); padding:12px 16px; border-radius:2px; font-size:0.95rem; outline:none; font-family:'Barlow',sans-serif; }
         .form-group input:focus { border-color:var(--gold); }
         .error-msg { color:var(--red); font-size:0.85rem; margin-bottom:16px; display:none; }
+        .remember-me { display:flex; align-items:center; gap:8px; margin-bottom:20px; color:rgba(245,240,232,0.7); font-size:0.85rem; }
 
         .admin-dashboard { display:none; }
         .admin-header { position:fixed; top:0; left:0; right:0; z-index:100; background:var(--dark2); border-bottom:1px solid rgba(201,168,76,0.2); padding:0 30px; height:65px; display:flex; align-items:center; justify-content:space-between; }
@@ -169,6 +196,7 @@
             nav { padding:0 20px; }
             .nav-links a:not(.btn-admin) { display:none; }
             section { padding:70px 20px; }
+            .about-content { grid-template-columns:1fr; }
             .contact-grid { grid-template-columns:1fr; }
             .form-row,.form-row.three { grid-template-columns:1fr; }
             .admin-sidebar { width:60px; }
@@ -180,21 +208,25 @@
     </style>
 </head>
 <body>
-
     <div class="toast-container" id="toast-container"></div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/923154407658?text=Hello%20Nisar%20%26%20Sons%2C%20I%20want%20to%20place%20an%20order." target="_blank" class="whatsapp-float" title="Order on WhatsApp">💬</a>
 
     <!-- ══════════════ PUBLIC WEBSITE ══════════════ -->
     <div id="public-site" class="page active">
         <nav>
             <div class="nav-brand" onclick="scrollTo('hero')">Nisar <span>& Sons</span></div>
             <div class="nav-links">
-                <a onclick="scrollTo('products-section')">Products</a>
+                <a onclick="scrollTo('about-section')">About</a>
+                <a onclick="scrollTo('products-section')">Shop</a>
                 <a onclick="scrollTo('brands-section')">Brands</a>
                 <a onclick="scrollTo('contact-section')">Contact</a>
                 <a class="btn-admin" onclick="showPage('admin-page')">Admin Panel</a>
             </div>
         </nav>
 
+        <!-- Hero -->
         <div id="hero" style="padding-top:70px;">
             <div class="hero">
                 <div>
@@ -202,26 +234,43 @@
                     <h1>Nisar <span>&</span> Sons</h1>
                     <p>Pakistan's trusted distributor of premium biscuits, chocolates, candies, and confectionery brands — delivering sweetness nationwide.</p>
                     <div class="hero-btns">
-                        <button class="btn-primary" onclick="scrollTo('products-section')">View Products</button>
+                        <button class="btn-primary" onclick="scrollTo('products-section')">Shop Now</button>
                         <button class="btn-outline" onclick="scrollTo('contact-section')">Contact Us</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- About Section -->
+        <section id="about-section">
+            <div class="section-label">Our Story</div>
+            <div class="section-title">About Nisar & Sons</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Founded with a passion for quality confectionery, <strong>Nisar & Sons</strong> has been serving retailers and customers across Pakistan for over two decades.</p>
+                    <p>We source the finest biscuits, chocolates, candies, and wafers from leading international and local brands. Our commitment to freshness and exceptional service has made us a trusted name in the industry.</p>
+                    <p>From small corner shops to large supermarkets, we supply products that bring joy to every occasion. Partner with us for reliable distribution and premium taste.</p>
+                </div>
+                <div style="text-align:center; font-size:5rem;">🍪🍫🍬</div>
+            </div>
+        </section>
+
+        <!-- Products / Shop Section -->
         <section id="products-section">
-            <div class="section-label">Our Portfolio</div>
+            <div class="section-label">Our Shop</div>
             <div class="section-title">Premium Products</div>
-            <p class="section-sub">We carry the finest selection of biscuits, chocolates, candies, and confectionery from leading brands across Pakistan and beyond.</p>
+            <p class="section-sub">Browse our selection of high‑quality confectionery. Click <strong>"Order Now"</strong> to place your order via WhatsApp directly.</p>
             <div class="products-grid" id="public-products-grid"></div>
         </section>
 
+        <!-- Brands -->
         <section id="brands-section" class="brands-section">
             <div class="section-label">Our Partners</div>
             <div class="section-title">Brands We Carry</div>
             <div class="brands-grid" id="brands-grid"></div>
         </section>
 
+        <!-- Contact -->
         <section id="contact-section" class="contact-section">
             <div class="section-label">Get In Touch</div>
             <div class="section-title">Contact Nisar & Sons</div>
@@ -230,7 +279,7 @@
                     <h3>We'd love to hear from you.</h3>
                     <p style="color:rgba(245,240,232,0.6);margin-bottom:30px;line-height:1.7;">Whether you're a retailer or a customer — our team is always ready to help.</p>
                     <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>Address</strong><span id="contact-address">Nisar & Sons Agency, Main Bazar, Pakistan</span></div></div>
-                    <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><strong>Phone</strong><span id="contact-phone">+92 300 0000000</span></div></div>
+                    <div class="contact-item"><div class="contact-icon">📞</div><div class="contact-text"><strong>Phone</strong><span id="contact-phone">+92 315 4407658</span></div></div>
                     <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>Email</strong><span id="contact-email">info@nisarandsons.pk</span></div></div>
                     <div class="contact-item"><div class="contact-icon">🕐</div><div class="contact-text"><strong>Hours</strong><span>Mon – Sat: 9:00 AM – 7:00 PM</span></div></div>
                 </div>
@@ -257,7 +306,8 @@
                 <h2>Admin Panel</h2>
                 <p>Nisar & Sons – Management Portal</p>
                 <div class="form-group"><label>Username</label><input type="text" id="login-user" placeholder="admin"></div>
-                <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+                <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="••••••••"></div>
+                <div class="remember-me"><input type="checkbox" id="remember-me"><label for="remember-me">Stay logged in (auto‑login next time)</label></div>
                 <p class="error-msg" id="login-error">Invalid username or password.</p>
                 <button class="btn-primary" style="width:100%;margin-bottom:16px;" onclick="doLogin()">Login</button>
                 <button class="btn-outline" style="width:100%;" onclick="showPage('public-site')">← Back to Website</button>
@@ -338,7 +388,7 @@
                         <div class="settings-box">
                             <h3>Company Info</h3>
                             <div class="form-row"><div class="admin-form-group"><label>Company Name</label><input type="text" id="s-company" value="Nisar & Sons"></div><div class="admin-form-group"><label>Tagline</label><input type="text" id="s-tagline" value="Premium Confectionery Agency"></div></div>
-                            <div class="form-row"><div class="admin-form-group"><label>Phone</label><input type="text" id="s-phone" value="+92 300 0000000"></div><div class="admin-form-group"><label>Email</label><input type="text" id="s-email" value="info@nisarandsons.pk"></div></div>
+                            <div class="form-row"><div class="admin-form-group"><label>Phone</label><input type="text" id="s-phone" value="+92 315 4407658"></div><div class="admin-form-group"><label>Email</label><input type="text" id="s-email" value="info@nisarandsons.pk"></div></div>
                             <div class="admin-form-group" style="margin-bottom:0;"><label>Address</label><input type="text" id="s-address" value="Main Bazar, Pakistan"></div>
                         </div>
                         <div class="settings-box">
@@ -354,7 +404,7 @@
 
     <script>
         (function() {
-            // ══════════════ FIREBASE (FAIL‑SAFE) ══════════════
+            // Firebase init (fail‑safe)
             let firebaseReady = false;
             let db, storage;
             try {
@@ -364,19 +414,15 @@
                     projectId: "nisar-sons-f574c",
                     storageBucket: "nisar-sons-f574c.firebasestorage.app",
                     messagingSenderId: "846534882721",
-                    appId: "1:846534882721:web:ccb1e175c4acfcb89407e0",
-                    measurementId: "G-TCST6P55GG"
+                    appId: "1:846534882721:web:ccb1e175c4acfcb89407e0"
                 });
                 db = firebase.firestore();
                 storage = firebase.storage();
                 db.enablePersistence({ synchronizeTabs: true }).catch(() => {});
                 firebaseReady = true;
-                console.log('Firebase connected');
-            } catch (e) {
-                console.warn('Firebase not available, using local storage mode');
-            }
+            } catch (e) { console.warn('Firebase offline – local mode'); }
 
-            // ══════════════ STATE ══════════════
+            // State
             const state = {
                 products: [],
                 brands: [],
@@ -387,25 +433,22 @@
                 listenersActive: false
             };
 
-            // ══════════════ TOAST ══════════════
+            // Toast
             function showToast(msg, type = 'success') {
                 const c = document.getElementById('toast-container');
                 const t = document.createElement('div');
                 t.className = 'toast ' + type;
-                t.textContent = (type === 'error' ? '❌ ' : type === 'info' ? 'ℹ️ ' : '✅ ') + msg;
+                t.textContent = (type === 'error' ? '❌ ' : '✅ ') + msg;
                 c.appendChild(t);
                 setTimeout(() => t.remove(), 2500);
             }
 
-            // ══════════════ NAVIGATION ══════════════
+            // Navigation
             window.showPage = function(id) {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 document.getElementById(id).classList.add('active');
                 window.scrollTo(0, 0);
-                if (id === 'public-site') {
-                    renderPublicProducts();
-                    renderBrandsPublic();
-                }
+                if (id === 'public-site') { renderPublicProducts(); renderBrandsPublic(); }
             };
             window.scrollTo = function(id) { document.getElementById(id)?.scrollIntoView({ behavior:'smooth' }); };
             window.showTab = function(id, el) {
@@ -419,7 +462,7 @@
                 if (id === 'tab-settings') loadSettingsIntoForm();
             };
 
-            // ══════════════ IMAGE PREVIEW ══════════════
+            // Image handling
             window.handleImgs = function(input) {
                 Array.from(input.files).forEach(file => {
                     state.pendingFiles.push(file);
@@ -439,7 +482,14 @@
                 return m[cat] || '📦';
             }
 
-            // ══════════════ RENDER PUBLIC ══════════════
+            // WhatsApp order link generator
+            function getWhatsAppOrderLink(productName) {
+                const phone = document.getElementById('contact-phone').textContent.replace(/\D/g,'');
+                const message = `Hello Nisar & Sons, I want to order: ${productName}. Please share details.`;
+                return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            }
+
+            // Render public products
             function renderPublicProducts() {
                 const grid = document.getElementById('public-products-grid');
                 if (!state.products.length) {
@@ -447,7 +497,7 @@
                     return;
                 }
                 grid.innerHTML = state.products.map(p => {
-                    const pid = p.firestoreId || p.id || Math.random().toString(36);
+                    const pid = p.firestoreId || p.id;
                     const hasImgs = p.imgs && p.imgs.length;
                     const slides = hasImgs
                         ? p.imgs.map((img,i) => `<img src="${img}" alt="${p.name}" class="${i===0?'active':''}" loading="lazy">`).join('')
@@ -462,9 +512,10 @@
                             <div class="product-name">${p.name}</div>
                             <div class="product-desc">${p.desc||'Premium quality from '+p.brand+'.'}</div>
                             <div style="display:flex;justify-content:space-between;align-items:center;">
-                                <span style="color:var(--gold);font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;">${p.price?'PKR '+p.price:'Contact'}</span>
+                                <span class="product-price">${p.price?'PKR '+p.price:'Contact'}</span>
                                 <span style="font-size:0.75rem;color:rgba(245,240,232,0.4);">${p.brand}</span>
                             </div>
+                            <a href="${getWhatsAppOrderLink(p.name)}" target="_blank" class="product-order-btn" style="text-decoration:none; display:block; text-align:center;">📱 Order Now</a>
                         </div>
                     </div>`;
                 }).join('');
@@ -481,7 +532,7 @@
                     : '<p style="color:rgba(245,240,232,0.4);">No brands yet.</p>';
             }
 
-            // ══════════════ RENDER ADMIN ══════════════
+            // Admin renders
             function renderAdminProducts() {
                 const list = document.getElementById('admin-products-list');
                 if (!state.products.length) {
@@ -492,12 +543,7 @@
                     const fid = p.firestoreId || p.id;
                     return `<div class="admin-product-row">
                         <div class="admin-product-thumb">${(p.imgs&&p.imgs.length)?`<img src="${p.imgs[0]}" loading="lazy">`:p.emoji||'📦'}</div>
-                        <div class="admin-product-info">
-                            <h4>${p.name}</h4><p>${(p.desc||'').substring(0,80)}</p>
-                            <div class="cat-tag">${p.category}</div>
-                            <span style="font-size:0.75rem;color:var(--gold);">${p.imgs?p.imgs.length:0} img</span>
-                            ${p.price?`<span style="font-size:0.8rem;color:rgba(245,240,232,0.6);margin-left:8px;">PKR ${p.price}</span>`:''}
-                        </div>
+                        <div class="admin-product-info"><h4>${p.name}</h4><p>${(p.desc||'').substring(0,80)}</p><div class="cat-tag">${p.category}</div><span style="font-size:0.75rem;color:var(--gold);">${p.imgs?p.imgs.length:0} img</span> ${p.price?`<span style="font-size:0.8rem;color:rgba(245,240,232,0.6);margin-left:8px;">PKR ${p.price}</span>`:''}</div>
                         <div class="admin-product-actions"><button class="btn-del" onclick="deleteProduct('${fid}')">Delete</button></div>
                     </div>`;
                 }).join('');
@@ -515,7 +561,7 @@
                 document.getElementById('stat-imgs').textContent = state.products.reduce((s,p)=>s+(p.imgs?p.imgs.length:0), 0);
             }
 
-            // ══════════════ LOCAL STORAGE HELPERS ══════════════
+            // Local Storage
             function saveLocal() {
                 try {
                     localStorage.setItem('ns_products', JSON.stringify(state.products));
@@ -534,12 +580,11 @@
                 } catch(e){}
             }
 
-            // ══════════════ REAL‑TIME LISTENERS (IF FIREBASE READY) ══════════════
+            // Real‑time listeners
             function startCloudListeners() {
                 if (!firebaseReady || state.listenersActive) return;
                 state.listenersActive = true;
                 document.getElementById('sync-indicator').innerHTML = '<span class="sync-dot"></span> Live Sync';
-
                 db.collection('products').orderBy('createdAt','desc').onSnapshot(snap => {
                     const prods = [];
                     snap.forEach(doc => {
@@ -548,26 +593,18 @@
                     });
                     state.products = prods;
                     saveLocal();
-                    renderPublicProducts();
-                    renderAdminProducts();
-                    updateDashboard();
-                }, err => {
-                    console.warn('Products listener offline');
-                    document.getElementById('sync-indicator').innerHTML = '⚠️ Offline';
-                });
-
+                    renderPublicProducts(); renderAdminProducts(); updateDashboard();
+                }, () => document.getElementById('sync-indicator').innerHTML = '⚠️ Offline');
                 db.collection('brands').orderBy('name').onSnapshot(snap => {
                     const brands = [];
                     snap.forEach(doc => brands.push(doc.data().name || doc.id));
                     state.brands = brands;
                     saveLocal();
-                    renderBrandsPublic();
-                    renderAdminBrands();
-                    updateDashboard();
-                }, err => console.warn('Brands listener offline'));
+                    renderBrandsPublic(); renderAdminBrands(); updateDashboard();
+                });
             }
 
-            // ══════════════ CRUD OPERATIONS ══════════════
+            // CRUD
             window.addProduct = async function() {
                 const name = document.getElementById('p-name').value.trim();
                 if (!name) { showToast('Enter product name','error'); return; }
@@ -585,70 +622,41 @@
                     emoji: getCatEmoji(document.getElementById('p-cat').value),
                     createdAt: new Date()
                 };
-
                 try {
                     if (firebaseReady) {
                         const docRef = db.collection('products').doc();
-                        const pid = docRef.id;
-                        newProduct.firestoreId = pid;
+                        newProduct.firestoreId = docRef.id;
                         if (state.pendingFiles.length) {
                             for (let i=0; i<state.pendingFiles.length; i++) {
                                 const f = state.pendingFiles[i];
                                 const ext = f.name.split('.').pop() || 'jpg';
-                                const ref = storage.ref(`products/${pid}/img_${i}_${Date.now()}.${ext}`);
+                                const ref = storage.ref(`products/${newProduct.firestoreId}/img_${i}_${Date.now()}.${ext}`);
                                 const up = await ref.put(f);
                                 newProduct.imgs.push(await up.ref.getDownloadURL());
                             }
                         }
-                        await docRef.set({
-                            name: newProduct.name,
-                            category: newProduct.category,
-                            brand: newProduct.brand,
-                            price: newProduct.price,
-                            badge: newProduct.badge,
-                            desc: newProduct.desc,
-                            imgs: newProduct.imgs,
-                            emoji: newProduct.emoji,
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        });
+                        await docRef.set({...newProduct, createdAt: firebase.firestore.FieldValue.serverTimestamp()});
                     } else {
-                        // Local mode: store base64 images
                         newProduct.imgs = [...state.pendingPreviews];
                         newProduct.firestoreId = newProduct.id;
                     }
-
                     state.products.unshift(newProduct);
                     if (newProduct.brand && !state.brands.includes(newProduct.brand)) {
                         state.brands.push(newProduct.brand);
-                        if (firebaseReady) {
-                            await db.collection('brands').doc(newProduct.brand).set({
-                                name: newProduct.brand,
-                                category: newProduct.category,
-                                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                            });
-                        }
+                        if (firebaseReady) await db.collection('brands').doc(newProduct.brand).set({ name: newProduct.brand });
                     }
                     saveLocal();
                     clearProductForm();
-                    renderPublicProducts();
-                    renderAdminProducts();
-                    renderBrandsPublic();
-                    renderAdminBrands();
-                    updateDashboard();
-                    showToast(`"${name}" added!`, 'success');
-                } catch(e) {
-                    showToast('Error: '+e.message,'error');
-                } finally {
-                    btn.disabled = false; btn.textContent = 'Add Product';
-                }
+                    renderPublicProducts(); renderAdminProducts(); renderBrandsPublic(); renderAdminBrands(); updateDashboard();
+                    showToast(`"${name}" added!`,'success');
+                } catch(e) { showToast('Error: '+e.message,'error'); }
+                finally { btn.disabled = false; btn.textContent = 'Add Product'; }
             };
-
             window.clearProductForm = function() {
                 ['p-name','p-brand','p-price','p-badge','p-desc'].forEach(id => document.getElementById(id).value='');
                 document.getElementById('p-cat').value='Biscuits';
                 state.pendingFiles=[]; state.pendingPreviews=[]; renderPreviews();
             };
-
             window.deleteProduct = async function(fid) {
                 if (!confirm('Delete this product?')) return;
                 try {
@@ -661,25 +669,16 @@
                     }
                     state.products = state.products.filter(p => (p.firestoreId||p.id) !== fid);
                     saveLocal();
-                    renderPublicProducts();
-                    renderAdminProducts();
-                    updateDashboard();
+                    renderPublicProducts(); renderAdminProducts(); updateDashboard();
                     showToast('Deleted.','success');
                 } catch(e) { showToast('Failed','error'); }
             };
-
             window.addBrand = async function() {
                 const name = document.getElementById('b-name').value.trim();
                 if (!name) { showToast('Enter brand name','error'); return; }
                 if (state.brands.includes(name)) { showToast('Already exists','info'); return; }
                 try {
-                    if (firebaseReady) {
-                        await db.collection('brands').doc(name).set({
-                            name,
-                            category: document.getElementById('b-cat').value.trim(),
-                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                    }
+                    if (firebaseReady) await db.collection('brands').doc(name).set({ name });
                     state.brands.push(name);
                     saveLocal();
                     document.getElementById('b-name').value=''; document.getElementById('b-cat').value='';
@@ -687,7 +686,6 @@
                     showToast(`"${name}" added!`,'success');
                 } catch(e) { showToast('Failed','error'); }
             };
-
             window.deleteBrand = async function(name) {
                 if (!confirm(`Delete "${name}"?`)) return;
                 try {
@@ -699,7 +697,7 @@
                 } catch(e) { showToast('Failed','error'); }
             };
 
-            // ══════════════ SETTINGS ══════════════
+            // Settings
             async function loadSettingsIntoForm() {
                 if (firebaseReady) {
                     try {
@@ -712,10 +710,9 @@
                             document.getElementById('s-email').value = s.email || '';
                             document.getElementById('s-address').value = s.address || '';
                         }
-                    } catch(e) {}
+                    } catch(e){}
                 }
             }
-
             window.saveSettings = async function() {
                 const np = document.getElementById('s-newpass').value;
                 const cp = document.getElementById('s-confpass').value;
@@ -733,9 +730,7 @@
                     adminPassword: state.adminPass
                 };
                 try {
-                    if (firebaseReady) {
-                        await db.collection('settings').doc('app-settings').set({...data, updatedAt: firebase.firestore.FieldValue.serverTimestamp()}, { merge:true });
-                    }
+                    if (firebaseReady) await db.collection('settings').doc('app-settings').set(data, { merge:true });
                     saveLocal();
                     document.getElementById('contact-address').textContent = data.address;
                     document.getElementById('contact-phone').textContent = data.phone;
@@ -744,7 +739,7 @@
                 } catch(e) { showToast('Failed','error'); }
             };
 
-            // ══════════════ AUTH ══════════════
+            // Auth with remember me
             window.doLogin = async function() {
                 const u = document.getElementById('login-user').value.trim();
                 const p = document.getElementById('login-pass').value;
@@ -758,7 +753,9 @@
                     document.getElementById('admin-login').style.display = 'none';
                     document.getElementById('admin-dashboard').style.display = 'block';
                     document.getElementById('login-error').style.display = 'none';
-                    document.getElementById('login-user').value = ''; document.getElementById('login-pass').value = '';
+                    if (document.getElementById('remember-me').checked) {
+                        sessionStorage.setItem('ns_admin_logged', 'true');
+                    }
                     if (firebaseReady) startCloudListeners();
                     renderAdminProducts(); renderAdminBrands(); updateDashboard();
                     showToast('Welcome!','success');
@@ -766,13 +763,20 @@
                     document.getElementById('login-error').style.display = 'block';
                 }
             };
-
             window.logout = function() {
                 document.getElementById('admin-dashboard').style.display = 'none';
                 document.getElementById('admin-login').style.display = 'flex';
+                sessionStorage.removeItem('ns_admin_logged');
                 showPage('public-site');
                 showToast('Logged out','info');
             };
+            // Auto‑login if previously remembered
+            if (sessionStorage.getItem('ns_admin_logged') === 'true') {
+                document.getElementById('admin-login').style.display = 'none';
+                document.getElementById('admin-dashboard').style.display = 'block';
+                if (firebaseReady) startCloudListeners();
+                renderAdminProducts(); renderAdminBrands(); updateDashboard();
+            }
 
             window.submitContact = function() {
                 const n = document.getElementById('contact-name').value.trim();
@@ -780,10 +784,8 @@
                 const m = document.getElementById('contact-msg').value.trim();
                 if (!n||!d||!m) { showToast('Fill all fields','error'); return; }
                 if (firebaseReady) {
-                    db.collection('messages').add({
-                        name:n, contactDetail:d, message:m,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }).catch(()=>{});
+                    db.collection('messages').add({ name:n, contactDetail:d, message:m,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp() }).catch(()=>{});
                 }
                 document.getElementById('contact-name').value = '';
                 document.getElementById('contact-detail').value = '';
@@ -791,35 +793,30 @@
                 showToast('Message sent!','success');
             };
 
-            // ══════════════ INIT (CACHE FIRST, THEN LIVE) ══════════════
+            // Init
             function init() {
                 loadLocal();
-                // Default data if empty
                 if (!state.products.length) {
                     state.products = [
                         {id:'s1',firestoreId:'s1',name:'LU Biskits',category:'Biscuits',brand:'LU',price:45,badge:'Popular',desc:'Classic crispy biscuits.',imgs:[],emoji:'🍪',createdAt:new Date()},
                         {id:'s2',firestoreId:'s2',name:'Gigly Chocolate',category:'Chocolates',brand:'Gigly',price:60,badge:'New',desc:'Rich creamy chocolate.',imgs:[],emoji:'🍫',createdAt:new Date()},
                         {id:'s3',firestoreId:'s3',name:'Cookania Cookies',category:'Cookies',brand:'Cookania',price:80,badge:'',desc:'Premium butter cookies.',imgs:[],emoji:'🥐',createdAt:new Date()},
                         {id:'s4',firestoreId:'s4',name:'Royal Glory Candy',category:'Candies',brand:'Royal Glory',price:5,badge:'Best Seller',desc:'Fruit-flavoured candies.',imgs:[],emoji:'🍬',createdAt:new Date()},
-                        {id:'s5',firestoreId:'s5',name:'Master Wafers',category:'Wafers',brand:'Master',price:35,badge:'',desc:'Light crispy wafers.',imgs:[],emoji:'🧇',createdAt:new Date()}
+                        {id:'s5',firestoreId:'s5',name:'Master Wafers',category:'Wafers',brand:'Master',price:35,badge:'',desc:'Light crispy wafers.',imgs:[],emoji:'🧇',createdAt:new Date()},
+                        {id:'s6',firestoreId:'s6',name:'Oreo Biscuits',category:'Biscuits',brand:'Oreo',price:70,badge:'Top',desc:'World famous chocolate sandwich cookies.',imgs:[],emoji:'🍪',createdAt:new Date()},
+                        {id:'s7',firestoreId:'s7',name:'KitKat Chunky',category:'Chocolates',brand:'KitKat',price:120,badge:'New',desc:'Crispy wafer fingers covered in milk chocolate.',imgs:[],emoji:'🍫',createdAt:new Date()}
                     ];
                 }
                 if (!state.brands.length) {
-                    state.brands = ['LU','Gigly','Cookania','Royal Glory','Master','Bisconni','Peek Freans'];
+                    state.brands = ['LU','Gigly','Cookania','Royal Glory','Master','Bisconni','Peek Freans','Oreo','KitKat'];
                 }
-
                 renderPublicProducts();
                 renderBrandsPublic();
                 updateDashboard();
-
-                if (firebaseReady) {
-                    startCloudListeners();
-                } else {
-                    document.getElementById('sync-indicator').innerHTML = '💾 Local Mode';
-                }
-                console.log('Nisar & Sons ready – ' + (firebaseReady ? 'Firebase live sync' : 'Local storage mode'));
+                document.getElementById('contact-phone').textContent = '+92 315 4407658';
+                if (firebaseReady) startCloudListeners();
+                else document.getElementById('sync-indicator').innerHTML = '💾 Local Mode';
             }
-
             init();
         })();
     </script>
